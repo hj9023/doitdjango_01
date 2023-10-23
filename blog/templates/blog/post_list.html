@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="./index.html">Do It Django</a>
+            <a class="navbar-brand" href="../../../../index.html">Do It Django</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="../../../../index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./blog_list.html">Blog</a>
+                        <a class="nav-link" href="./post_list.html">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./about_me.html">About Me</a>
@@ -81,12 +81,41 @@
 
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-8 col-lg-9">
+            <div class="col-md-8 col-lg-9" id="main-area">
                 <h1>Blog</h1>
-
+                {% if post_list.exists %}
+                {% for p in post_list %}
                 <!-- Blog Post -->
                 <div class="card mb-4">
-                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    {% if p.head_image %}
+                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+                    {% else %}
+                    <img class="card-img-top" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title"> {{ p.title }}</h2>
+                        <p class="card-text">{{ p.content | truncatewords:10 }}</p>
+                        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ p.create_at }} by
+                        <a href="#"> 개발예정 </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+                <h1>아직 게시물이 없습니다.</h1>
+        {% endif %}
+
+
+                 <!-- Blog Post -->
+                {% for p in post_list %}
+                <div class="card mb-4">
+                    {% if p.head_image %}
+                        <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image">
+                    {% else %}
+                        <img class="card-img-top" src="https://picsum.phtos/seed/{{p.id }}/800/200" alt="random image">
+                    {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">Post Title</h2>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
@@ -99,22 +128,7 @@
                         <a href="#">Start Bootstrap</a>
                     </div>
                 </div>
-
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title">Post Title</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                            aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi
-                            vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posted on January 1, 2017 by
-                        <a href="#">Start Bootstrap</a>
-                    </div>
-                </div>
+                {% endfor %}
 
                 <!-- Pagination -->
                 <ul class="pagination justify-content-center mb-4">
@@ -190,7 +204,7 @@
         <!-- /.container -->
     </footer>
 
-
+<!--
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -199,26 +213,9 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>-->
 
 </body>
 
 </html>
 
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Blog list</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1> 블로그 </h1>-->
-<!--{% for p in post_list %}-->
-<!--<br/>-->
-<!--<h2><a href="{{ p.get_absolute.url }}">{{ p.title }}</a></h2>-->
-<!--<h4>{{p.created_at }}</h4>-->
-<!--<p>{{p.content}}</p>-->
-<!--{% endfor %}}-->
-<!--</body>-->
-<!--</html>-->
