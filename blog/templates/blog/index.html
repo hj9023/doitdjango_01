@@ -1,6 +1,10 @@
-{% extends 'single_pages/single_page_base.html' %}
-
-{% block area %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>BLOG TEST</title>
+</head>
+<body>
+<h1> 안녕하세요</h1>
 
 
 {% for p in posts %}
@@ -9,6 +13,6 @@
     <h4>{{ p.create_at }}</h4>
     <p>{{ p.content }}</p>
 {% endfor %}
+</body>
 
-
-{% endblock %}
+</html>
