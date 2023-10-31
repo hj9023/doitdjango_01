@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog list</title>
-</head>
-<body>
-<h1> 블로그 </h1>
-{% for p in post_list %}
-<br/>
-<h2><a href="{{ p.get_absolute.url }}">{{ p.title }}</a></h2>
-<h4>{{p.created_at }}</h4>
-<p>{{p.content}}</p>
-{% endfor %}}
-</body>
-</html>
+
+{% extends './base.html' %}
+    {% block main_area %}
+
+
+    <h1>Blog</h1>
+            {% if post_list.exists %}
+                {% for p in post_list %}
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                    {% if p.head_image %}
+                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+                    {% else %}
+                    <img class="card-img-top" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title"> {{ p.title }}</h2>
+                        <p class="card-text">{{ p.content | truncatewords:10 }}</p>
+                        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ p.create_at }} by
+                        <a href="#"> 개발예정 </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h1>게시물이 없습니다.</h1>
+             {% endif %}
+
+
+                <!-- Pagination -->
+                <ul class="pagination justify-content-center mb-4">
+                    <li class="page-item">
+                        <a class="page-link" href="#">&larr; Older</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+{% endblock %}
