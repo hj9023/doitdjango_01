@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>landing 페이지 입니다.</title>
-</head>
-<body>
-{% include 'single_pages/navbar.html' %}
 
-<h1> 안녕하세요. </h1>
-<h1> 대문페이지 </h1>
+{% extends 'single_pages/base.html' %}
+    {% block main_area %}
 
-{% include 'single_pages/footer.html' %}
-</body>
-</html>
+
+    <h1>안녕하세요</h1>
+
+    <h1>대문 페이지</h1>
+
+{% endblock %}

@@ -14,7 +14,7 @@
 <body>
 
     {% include 'blog/navbar.html' %}
-    {% include 'blob/modal.html' %}
+    {% include 'blog/modal.html' %}
 
 
 
@@ -24,15 +24,7 @@
                 {% block main_area %}
                 {% endblock %}
 
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item">
-                        <a class="page-link" href="#">&larr; Older</a>
-                    </li>
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+
 
             </div>
 
@@ -88,7 +80,7 @@
         </div>
     </div>
 
-    {% include 'blob/footer.html' %}
+    {% include 'blog/footer.html' %}
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>나의 소개 페이지</title>
-</head>
-<body>
-{% include 'single_pages/navbar.html' %}
-
+{% extends 'single_pages/base.html' %}
+{% block main_area %}
 
 <h1> 안녕하세요. </h1>
 <h1> 나의 소개페이지 </h1>
 
-
-{% include 'single_pages/footer.html' %}
-</body>
-</html>
+{% endblock %}
